@@ -115,4 +115,8 @@ img {
     background-size: 1280px;
     background-repeat: no-repeat;
   }
+}
+
+.header__icon {
+  fill: white;
 }/*# sourceMappingURL=index.css.map */
