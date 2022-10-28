@@ -1,4 +1,4 @@
-.page-header {
+.page-header .container {
   width: 100%;
   //   @media screen and (max-width: 320px)
   @include mobile {
@@ -15,12 +15,12 @@
       (min-resolution: 2dppx) {
       & {
         background-image: url('../src/images/header_mob_all@2x.jpg');
-        background-size: auto;
-        background-position: 50% 263px;
+        background-size: 320px;
         background-repeat: no-repeat;
       }
     }
   }
+
   //   @media screen and (min-width: 320px) and (max-width: 767px)
   @include tablet {
     height: 216px;
@@ -36,8 +36,8 @@
       (min-resolution: 2dppx) {
       & {
         background-image: url('../src/images/header_tabl_all@2x.jpg');
-        background-size: auto;
-        background-position: 50% 263px;
+        background-size: 768px;
+
         background-repeat: no-repeat;
       }
     }
@@ -54,8 +54,8 @@
       (min-resolution: 2dppx) {
       & {
         background-image: url('../src/images/header_desk_all@2x.jpg');
-        background-size: auto;
-        background-position: 50% 263px;
+        background-size: 1280px;
+
         background-repeat: no-repeat;
       }
     }
