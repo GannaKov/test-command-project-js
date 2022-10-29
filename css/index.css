@@ -205,11 +205,11 @@ img {
 }
 
 .search-form__input {
-  border: transparent;
+  border: none;
   border-bottom: 0.5px solid rgb(255, 255, 255);
   width: 100%;
   background-color: transparent;
-  outline: transparent;
+  outline: none;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
