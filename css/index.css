@@ -123,8 +123,14 @@ img {
 
 .header-nav {
   display: flex;
+  margin-bottom: 80px;
   align-items: center;
   justify-content: space-between;
+}
+@media screen and (min-width: 768px) {
+  .header-nav {
+    margin-bottom: 60px;
+  }
 }
 
 .header-logo {
@@ -179,4 +185,35 @@ img {
 
 .header-nav__item:not(:last-child) {
   margin-right: 40px;
+}
+
+.search-form {
+  position: relative;
+  display: flex;
+  background-color: transparent;
+  width: 280px;
+}
+
+.search-form__input {
+  border: none;
+  border-bottom: 0.5px solid rgb(255, 255, 255);
+  width: 100%;
+  background-color: transparent;
+  outline: transparent;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.17;
+  color: rgb(255, 255, 255);
+}
+.search-form__input::placeholder {
+  color: rgb(255, 255, 255);
+}
+
+.search-form__icon {
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+  cursor: pointer;
 }/*# sourceMappingURL=index.css.map */
