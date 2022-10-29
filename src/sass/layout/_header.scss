@@ -3,7 +3,7 @@
   //   @media screen and (max-width: 320px)
   @include mobile {
     padding-top: 20px;
-    padding-bottom: 92px;
+
     height: 230px;
 
     background-image: url('../src/images/header_mob_all.jpg');
@@ -26,7 +26,7 @@
   //   @media screen and (min-width: 320px) and (max-width: 767px)
   @include tablet {
     padding-top: 45px;
-    padding-bottom: 80px;
+
     height: 216px;
 
     background-image: url('../src/images/header_tabl_all.jpg');
@@ -119,7 +119,7 @@
   text-transform: uppercase;
 }
 .header-nav__item .link {
-  display: flex;
+  //   display: flex;
   //   padding-top: 32px;
   //   padding-bottom: 32px;
   color: rgba(255, 255, 255, 1);
