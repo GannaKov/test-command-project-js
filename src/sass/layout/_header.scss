@@ -67,16 +67,19 @@
 }
 .header-nav {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .header-logo {
   display: flex;
-  margin-right: 113px;
-  @include tablet {
-    margin-right: 387px;
-  }
-  @include desktop {
-    margin-right: 898px;
-  }
+  //   margin-right: 113px;
+  align-items: center;
+  //   @include tablet {
+  //     margin-right: 387px;
+  //   }
+  //   @include desktop {
+  //     margin-right: 898px;
+  //   }
 }
 .header-logo__icon {
   fill: white;
@@ -89,6 +92,13 @@
   }
 }
 .header-logo__text {
+  color: rgba(255, 255, 255, 1);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.17;
+
   @media screen and (max-width: 767px) {
     display: none;
   }
@@ -96,6 +106,19 @@
 
 .header-nav__menu {
   display: flex;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17px;
+
+  text-transform: uppercase;
+}
+.header-nav__item .link {
+  display: flex;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  color: rgba(255, 255, 255, 1);
 }
 .header-nav__item:not(:last-child) {
   margin-right: 40px;
