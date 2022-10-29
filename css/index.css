@@ -87,48 +87,40 @@ img {
 }
 @media screen and (min-width: 320px) {
   .page-header .container {
-    padding-top: 20px;
-    height: 230px;
+    padding-top: 40px;
+    padding-bottom: 92px;
     background-image: url("../src/images/header_mob_all.jpg");
-    background-size: auto;
+    background-size: cover;
     background-repeat: no-repeat;
   }
 }
 @media screen and (min-width: 320px) and (min-device-pixel-ratio: 2), screen and (min-width: 320px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 320px) and (-o-min-device-pixel-ratio: 2/1), screen and (min-width: 320px) and (min-resolution: 192dpi), screen and (min-width: 320px) and (min-resolution: 2dppx) {
   .page-header .container {
     background-image: url("../src/images/header_mob_all@2x.jpg");
-    background-size: 320px;
+    background-size: cover;
     background-repeat: no-repeat;
   }
 }
 @media screen and (min-width: 768px) {
   .page-header .container {
     padding-top: 45px;
-    height: 216px;
+    padding-bottom: 80px;
     background-image: url("../src/images/header_tabl_all.jpg");
-    background-size: auto;
-    background-repeat: no-repeat;
   }
 }
 @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2), screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 768px) and (-o-min-device-pixel-ratio: 2/1), screen and (min-width: 768px) and (min-resolution: 192dpi), screen and (min-width: 768px) and (min-resolution: 2dppx) {
   .page-header .container {
     background-image: url("../src/images/header_tabl_all@2x.jpg");
-    background-size: 768px;
-    background-repeat: no-repeat;
   }
 }
 @media screen and (min-width: 1280px) {
   .page-header .container {
     background-image: url("../src/images/header_desk_all.jpg");
-    background-size: auto;
-    background-repeat: no-repeat;
   }
 }
 @media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2), screen and (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 1280px) and (-o-min-device-pixel-ratio: 2/1), screen and (min-width: 1280px) and (min-resolution: 192dpi), screen and (min-width: 1280px) and (min-resolution: 2dppx) {
   .page-header .container {
     background-image: url("../src/images/header_desk_all@2x.jpg");
-    background-size: 1280px;
-    background-repeat: no-repeat;
   }
 }
 
