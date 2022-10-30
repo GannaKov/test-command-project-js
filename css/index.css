@@ -236,4 +236,8 @@ img {
   border: none;
   outline: none;
   background-color: transparent;
+}
+
+.films-gallery-container {
+  padding-top: 20px;
 }/*# sourceMappingURL=index.css.map */
