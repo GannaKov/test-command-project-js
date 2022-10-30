@@ -240,4 +240,27 @@ img {
 
 .films-gallery-container {
   padding-top: 20px;
+}
+
+.films-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  column-gap: 16px;
+  row-gap: 32px;
+}
+
+@media screen and (min-width: 1280px) {
+  .film-card {
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc((100% - 32px) / 3);
+  }
+}
+
+.film-card__img {
+  object-fit: cover;
+  /* height: 274px; */
+  height: 574px;
+  width: 100%;
 }/*# sourceMappingURL=index.css.map */

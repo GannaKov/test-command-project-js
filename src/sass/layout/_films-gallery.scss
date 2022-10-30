@@ -2,3 +2,25 @@
   padding-top: 20px;
   //   padding-bottom: 20px;
 }
+.films-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  //   justify-content: space-between;
+  column-gap: 16px;
+  row-gap: 32px;
+}
+.film-card {
+  @include desktop {
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc((100% - 32px) / 3);
+    // height: 634px;
+  }
+}
+.film-card__img {
+  object-fit: cover;
+  /* height: 274px; */
+  height: 574px;
+  width: 100%;
+}

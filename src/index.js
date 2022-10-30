@@ -1,131 +1,119 @@
 import { Notify } from 'notiflix';
 import { Report } from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.5.min.css';
-import 'simplelightbox/dist/simple-lightbox.min.css';
-import SimpleLightbox from 'simplelightbox';
-import fetchPhotos from './customFunction/fetchPhotos';
-import createSmallImgMarkup from './customFunction/funcrionRender';
+import fetchFilms from './customFunction/fetchFilms';
+import createFilmMarkup from './customFunction/funcrionRender';
 import cleanRender from './customFunction/functionCleanRender';
 // import './css/styles.css';
 import '../css/index.css';
-const lightbox = new SimpleLightbox('.gallery__link', { showCounter: false });
+let genreIdArray;
+function fetchGenreId() {
+  return fetch(
+    'https://api.themoviedb.org/3/genre/movie/list?api_key=894ef72300682f1db325dae2afe3e7e2&language=en-US'
+  ).then(response => {
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+
+    return response.json();
+  });
+}
+fetchGenreId()
+  .then(genreId => {
+    genreIdArray = genreId.genres;
+    console.log(genreId.genres);
+  })
+  .catch(error => console.log(error));
+
 // -----------------
 
 // -------------------
 
-// const optionsObserv = {
-//   root: null,
-//   rootMargin: '30px',
-//   threshold: 1,
+// const optionsNotify = {
+//   position: 'center-bottom',
+//   showOnlyTheLastOne: true,
+//   timeout: 4000,
 // };
-//const observer = new IntersectionObserver(onLoad, optionsObserv);
 let page;
 let perPage = 40;
 let totalPage;
 let totalHitsPhotos;
 let inputValue = '';
-
-const optionsNotify = {
-  position: 'center-bottom',
-  showOnlyTheLastOne: true,
-  timeout: 4000,
-};
 const refs = {
   formEl: document.querySelector('.search-form'),
-  galleryEl: document.querySelector('.gallery'),
-  guardEl: document.querySelector('.guard'),
-  loadMoreBtnEl: document.querySelector('.load-more'),
+  galleryEl: document.querySelector('.films-gallery'),
 };
 refs.formEl.addEventListener('submit', onFormSubmit);
-refs.loadMoreBtnEl.addEventListener('click', onLoad);
-// -------------------
-refs.loadMoreBtnEl.setAttribute('hidden', true);
-//--------------------
+
 function onFormSubmit(evt) {
   evt.preventDefault();
-  refs.loadMoreBtnEl.setAttribute('hidden', true);
-
-  window.scrollTo(top);
   page = 1;
-
   inputValue = evt.target.elements.searchQuery.value.toLowerCase().trim();
-  if (inputValue === '') {
+  fetchFilms(inputValue, page).then(response => {
     cleanRender(refs.galleryEl);
-    Report.info('Please', 'Fill in the search field!', 'Okay', {
-      backOverlayClickToClose: true,
-    });
-    return;
-  }
-
-  fetchPhotos(inputValue, perPage, page)
-    .then(response => {
-      cleanRender(refs.galleryEl);
-
-      if (response.data.total === 0) {
-        refs.loadMoreBtnEl.setAttribute('hidden', true);
-        Report.warning(
-          'Sorry',
-          'There are no images matching your search query. Please try again.',
-          'Okay',
-          {
-            backOverlayClickToClose: true,
-          }
-        );
-        return;
-      }
-
-      refs.loadMoreBtnEl.removeAttribute('hidden');
-      totalPage = Math.ceil(response.data.totalHits / perPage);
-      totalHitsPhotos = response.data.totalHits;
-
-      Notify.success(`Hooray! We found ${response.data.totalHits} images.`, {
-        showOnlyTheLastOne: true,
-      });
-      const imgMarkUp = createSmallImgMarkup(response.data.hits);
-      refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
-
-      lightbox.refresh();
-      if (response.data.totalHits <= perPage) {
-        refs.loadMoreBtnEl.setAttribute('hidden', true);
-        Notify.warning(
-          'We are sorry, but you have reached the end of search results.',
-          optionsNotify
-        );
-      }
-    })
-    .catch(error => console.log(error));
-}
-
-function onLoad() {
-  if (inputValue === '') {
-    return;
-  }
-
-  page += 1;
-  console.log(page);
-  console.log(totalPage);
-  fetchPhotos(inputValue, perPage, page).then(response => {
-    const imgMarkUp = createSmallImgMarkup(response.data.hits);
-    refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
-    // //*********************************
-    const { height: cardHeight } =
-      refs.galleryEl.firstElementChild.getBoundingClientRect();
-    window.scrollBy({
-      top: cardHeight * 2,
-      behavior: 'smooth',
-    });
-    //*************************************
-    lightbox.refresh();
   });
-
-  if (totalHitsPhotos > 0 && page >= totalPage) {
-    console.log('Yes');
-    refs.loadMoreBtnEl.setAttribute('hidden', true);
-    Notify.warning(
-      'We are sorry, but you have reached the end of search results.',
-      optionsNotify
-    );
-
-    return;
-  }
 }
+function fetchFilmsTrends() {
+  page = 1;
+  fetchFilms(page).then(response => {
+    console.log(response.data.results);
+    const imgMarkUp = createFilmMarkup(response.data.results);
+    refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
+    // console.log(response.data.results.genre);
+    // console.log(response.data.results.original_name);
+  });
+}
+fetchFilmsTrends();
+// if (inputValue === '') {
+//   cleanRender(refs.galleryEl);
+//   Report.info('Please', 'Fill in the search field!', 'Okay', {
+//     backOverlayClickToClose: true,
+//   });
+//   return;
+// }
+//       const imgMarkUp = createSmallImgMarkup(response.data.hits);
+//       refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
+//       if (response.data.totalHits <= perPage) {
+//         refs.loadMoreBtnEl.setAttribute('hidden', true);
+//         Notify.warning(
+//           'We are sorry, but you have reached the end of search results.',
+//           optionsNotify
+//         );
+//       }
+//     })
+//     .catch(error => console.log(error));
+// }
+
+// function onLoad() {
+//   if (inputValue === '') {
+//     return;
+//   }
+
+//   page += 1;
+//   console.log(page);
+//   console.log(totalPage);
+//   fetchPhotos(inputValue, perPage, page).then(response => {
+//     const imgMarkUp = createSmallImgMarkup(response.data.hits);
+//     refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
+//     // //*********************************
+//     const { height: cardHeight } =
+//       refs.galleryEl.firstElementChild.getBoundingClientRect();
+//     window.scrollBy({
+//       top: cardHeight * 2,
+//       behavior: 'smooth',
+//     });
+//     //*************************************
+//     lightbox.refresh();
+//   });
+
+//   if (totalHitsPhotos > 0 && page >= totalPage) {
+//     console.log('Yes');
+//     refs.loadMoreBtnEl.setAttribute('hidden', true);
+//     Notify.warning(
+//       'We are sorry, but you have reached the end of search results.',
+//       optionsNotify
+//     );
+
+//     return;
+// }
+// ----

@@ -1,36 +1,27 @@
-export default function createSmallImgMarkup(arrPhotos) {
-  return arrPhotos
-    .map(
-      ({
-        largeImageURL,
-        webformatURL,
-        tags,
-        likes,
-        views,
-        comments,
-        downloads,
-      }) => {
-        return `<div class="film-card">
-      <a class="film-card__link link" href="${largeImageURL}">
-        <img
-          src="https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__340.jpg"
+export default function createFilmMarkup(arrFilms) {
+  return arrFilms
+    .map(({ original_title, release_date, genre_ids, poster_path }) => {
+      console.log(poster_path);
+      return `<div class="film-card">
+      <a class="film-card__link link" href="">
+        <img class="film-card__img"
+          src="${poster_path}"
           alt=""
         />
         <div class="film-card__info">
           <p class="film-card__name film-card__item">
-            <b>Name</b>
+            ${original_title}
           </p>
           <p class="film-card__genre film-card__item">
-            <b>Genre</b>
+            Genre
           </p>
           <p class="film-card__year film-card__item">
-            <b>Year</b>
+            ${release_date}
           </p>
         </div>
       </a>
     </div>`;
-      }
-    )
+    })
     .join('');
 }
 // `<div class="photo-card">
