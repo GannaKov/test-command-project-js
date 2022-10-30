@@ -160,9 +160,23 @@
     color: rgba(255, 255, 255, 1);
   }
 }
-.search-form__icon {
+// .search-form__icon {
+//   position: absolute;
+//   right: 0;
+//   bottom: 6px;
+//   cursor: pointer;
+// }
+.search-form__btn {
+  display: flex;
   position: absolute;
   right: 0;
   bottom: 6px;
   cursor: pointer;
+  width: 12px;
+  height: 12px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
