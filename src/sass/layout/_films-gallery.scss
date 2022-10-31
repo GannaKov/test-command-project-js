@@ -9,21 +9,33 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  row-gap: 20px;
   //   justify-content: space-between;
-  column-gap: 16px;
-  row-gap: 32px;
+  @include tablet {
+    column-gap: 32px;
+    row-gap: 32px;
+  }
+  @include desktop {
+    column-gap: 16px;
+    row-gap: 32px;
+  }
 }
 .film-card {
+  display: flex;
+  flex-direction: column;
+  height: 443px;
+  @include tablet {
+    flex-basis: calc((100% - 32px) / 2);
+    height: 494px;
+  }
   @include desktop {
-    display: flex;
-    flex-direction: column;
     flex-basis: calc((100% - 32px) / 3);
     height: 634px;
   }
 }
 .film-card__img {
   object-fit: cover;
-  /* height: 274px; */
-  height: 574px;
+
+  // height: 574px;
   width: 100%;
 }
