@@ -1,7 +1,18 @@
 export default function createFilmMarkup(arrFilms) {
   return arrFilms
     .map(({ original_title, release_date, genre_ids, backdrop_path }) => {
-      console.log(backdrop_path);
+      let genre;
+      // const genre = genre_ids.map(genre_id => {
+      //   genreIdArray.find(genreIdItem => genreIdItem.id === genre_id);
+      // });
+      // const genrej = genreIdArray.map(genre_idIt => console.log(genre_idIt));
+      // genre_ids.forEach(genre_id => {
+      //   genreIdArray.find(genreIdItem => {
+      //     genreIdItem.id === genre_id;
+      //   });
+      //   genre.push(genreIdItem.name);
+      // });
+      // console.log(genre);
       return `<div class="film-card">
       <a class="film-card__link link" href="">
         <img class="film-card__img"

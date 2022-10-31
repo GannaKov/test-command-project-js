@@ -1,40 +1,26 @@
 import { Notify } from 'notiflix';
 import { Report } from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.5.min.css';
-import fetchFilms from './customFunction/fetchFilms';
+
 import createFilmMarkup from './customFunction/funcrionRender';
 import cleanRender from './customFunction/functionCleanRender';
+import fetchGenreId from './customFunction/fetchGenreId';
+import fetchFilmsTrends from './customFunction/fetchFilmsTrends';
+
 // import './css/styles.css';
 import '../css/index.css';
-let genreIdArray;
-function fetchGenreId() {
-  return fetch(
-    'https://api.themoviedb.org/3/genre/movie/list?api_key=894ef72300682f1db325dae2afe3e7e2&language=en-US'
-  ).then(response => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
 
-    return response.json();
-  });
-}
+let genreIdArr = [];
+
 fetchGenreId()
   .then(genreId => {
-    genreIdArray = genreId.genres;
-    console.log(genreId.genres);
+    genreIdArr = genreId.genres;
   })
   .catch(error => console.log(error));
 
 // -----------------
 
-// -------------------
-
-// const optionsNotify = {
-//   position: 'center-bottom',
-//   showOnlyTheLastOne: true,
-//   timeout: 4000,
-// };
-let page;
+let page = 1;
 let perPage = 40;
 let totalPage;
 let totalHitsPhotos;
@@ -43,27 +29,32 @@ const refs = {
   formEl: document.querySelector('.search-form'),
   galleryEl: document.querySelector('.films-gallery'),
 };
-refs.formEl.addEventListener('submit', onFormSubmit);
+// refs.formEl.addEventListener('submit', onFormSubmit);
 
-function onFormSubmit(evt) {
-  evt.preventDefault();
-  page = 1;
-  inputValue = evt.target.elements.searchQuery.value.toLowerCase().trim();
-  fetchFilms(inputValue, page).then(response => {
-    cleanRender(refs.galleryEl);
-  });
+// function onFormSubmit(evt) {
+//   evt.preventDefault();
+//   page = 1;
+//   inputValue = evt.target.elements.searchQuery.value.toLowerCase().trim();
+//   fetchFilms(inputValue, page).then(response => {
+//     cleanRender(refs.galleryEl);
+//   });
+// }
+
+fetchFilmsTrends(page).then(response => {
+  getGenreName(response.results);
+  const imgMarkUp = createFilmMarkup(response.results);
+  refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
+  // console.log(response.data.results.genre);
+  // console.log(response.data.results.original_name);
+});
+function getGenreName(objFilms) {
+  console.log('objFilms!', objFilms);
+  console.log('genreIdArray!', genreIdArr);
 }
-function fetchFilmsTrends() {
-  page = 1;
-  fetchFilms(page).then(response => {
-    console.log(response.data.results);
-    const imgMarkUp = createFilmMarkup(response.data.results);
-    refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
-    // console.log(response.data.results.genre);
-    // console.log(response.data.results.original_name);
-  });
-}
-fetchFilmsTrends();
+// function fetchFilmsTrends() {
+//   page = 1;
+//   fetchFilms(page).
+// }
 // if (inputValue === '') {
 //   cleanRender(refs.galleryEl);
 //   Report.info('Please', 'Fill in the search field!', 'Okay', {
