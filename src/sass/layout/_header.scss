@@ -1,11 +1,10 @@
 .page-header .container {
   width: 100%;
+  opacity: 0.95; //???????? 0.9????
   //   @media screen and (max-width: 320px)
   @include mobile {
     padding-top: 40px;
     padding-bottom: 92px;
-    // height: 230px;
-
     background-image: url('../src/images/header_mob_all.jpg');
     background-size: cover;
     background-repeat: no-repeat;

@@ -6,11 +6,14 @@ export default function createFilmMarkup(arrFilms) {
       const date = new Date(release_date);
       const yearRelease = date.getFullYear();
       return `<div class="film-card">
-      <a class="film-card__link link" href="">
+      <div class="film-card__img-box">
+        <a class="film-card__link link" href="">
         <img class="film-card__img"
           src="https://www.themoviedb.org/t/p/w500/${poster_path}"
           alt=""
         />
+        </a></div>
+      
         <div class="film-card__info">
           <h2 class="film-card__name film-card__item">
             ${original_title}
@@ -19,7 +22,7 @@ export default function createFilmMarkup(arrFilms) {
             ${genres} | ${yearRelease}
           </p>
         </div>
-      </a>
+      
     </div>`;
     })
     .join('');
