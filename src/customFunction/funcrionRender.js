@@ -1,11 +1,11 @@
 export default function createFilmMarkup(arrFilms) {
   return arrFilms
-    .map(({ original_title, release_date, genre_ids, poster_path }) => {
-      console.log(poster_path);
+    .map(({ original_title, release_date, genre_ids, backdrop_path }) => {
+      console.log(backdrop_path);
       return `<div class="film-card">
       <a class="film-card__link link" href="">
         <img class="film-card__img"
-          src="${poster_path}"
+          src="https://www.themoviedb.org/t/p/w220_and_h330_face${backdrop_path}"
           alt=""
         />
         <div class="film-card__info">
