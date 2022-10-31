@@ -11,7 +11,8 @@ import fetchFilmsTrends from './customFunction/fetchFilmsTrends';
 import '../css/index.css';
 
 let genreIdArr = [];
-let genreName = [];
+// let genreName = [];
+
 fetchGenreId()
   .then(genreId => {
     genreIdArr = genreId.genres;
@@ -39,6 +40,8 @@ const refs = {
 //     cleanRender(refs.galleryEl);
 //   });
 // }
+
+//---- создает страницу трендов
 fetchFilmsTrends(page).then(response => {
   // getGenreName(response.results);
   const imgMarkUp = createFilmMarkup(response.results);
@@ -46,48 +49,18 @@ fetchFilmsTrends(page).then(response => {
   // console.log(response.data.results.genre);
   // console.log(response.data.results.original_name);
 });
+//---------------------
 
+// --- жанры
 export default function getGenreName(genre_ids) {
-  console.log('genreIdArray!', genreIdArr);
-  console.log('GN genre_ids', genre_ids);
-  genreName = [];
+  let genreName = [];
   genre_ids.forEach(genre_id => {
-    console.log('GN genre_id', genre_id);
-    let aaaa = genreIdArr.find(genre => genre.id === genre_id);
-    // console.log(genre.id, genre.name);
-
-    // console.log('name', aaaa.name);
-    genreName.push(aaaa.name);
+    genreName.push(genreIdArr.find(genre => genre.id === genre_id).name);
   });
-
-  // console.log('ku', ...genres, genres);
   return genreName;
 }
+//-------------------
 
-// function getGenreName(objFilms) {
-//   console.log('objFilms!', objFilms);
-//   console.log('genreIdArray!', genreIdArr);
-//   objFilms.map(({ genre_ids }) => {
-//     console.log(genre_ids);
-//     genreName = [];
-//     genre_ids.forEach(genre_id => {
-//       console.log(genre_id);
-//       let aaaa = genreIdArr.find(genre => genre.id === genre_id);
-//       // console.log(genre.id, genre.name);
-
-//       console.log(aaaa.name);
-//       genreName.push(aaaa.name);
-//     });
-//     console.log(genreName);
-//   });
-
-// objFilms.forEach(film => {
-//   genreIdArray.find(genreIdItem => {
-//     genreIdItem.id === film.genre_ids;
-//   });
-//   genreName.push(genreIdItem.name);
-// });
-// }
 // function fetchFilmsTrends() {
 //   page = 1;
 //   fetchFilms(page).

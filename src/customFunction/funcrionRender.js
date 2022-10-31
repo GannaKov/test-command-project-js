@@ -2,9 +2,9 @@ import getGenreName from '../index.js';
 export default function createFilmMarkup(arrFilms) {
   return arrFilms
     .map(({ original_title, release_date, genre_ids, poster_path }) => {
-      console.log('RENDER', genre_ids);
       let genres = getGenreName(genre_ids);
-      console.log(genres);
+      const date = new Date(release_date);
+      const yearRelease = date.getFullYear();
       return `<div class="film-card">
       <a class="film-card__link link" href="">
         <img class="film-card__img"
@@ -19,7 +19,7 @@ export default function createFilmMarkup(arrFilms) {
             ${genres}
           </p>
           <p class="film-card__year film-card__item">
-            ${release_date}
+            ${yearRelease}
           </p>
         </div>
       </a>
