@@ -39,3 +39,43 @@
   // height: 574px;
   width: 100%;
 }
+.film-card__info {
+  padding-top: 10px;
+  // display: flex;
+  // flex-direction: column;
+}
+// background: linear-gradient(0deg, #000000, #000000),
+//   linear-gradient(0deg, #ff6b08, #ff6b08);
+.film-card__name {
+  color: rgba(0, 0, 0, 1);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
+  @include tablet {
+    font-size: 12px;
+    line-height: 1.33;
+  }
+  @include desktop {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+.film-card__data {
+  color: rgba(255, 107, 8, 1);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  @include tablet {
+    font-size: 12px;
+    line-height: 1.33;
+  }
+  @include desktop {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}

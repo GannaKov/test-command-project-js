@@ -287,4 +287,51 @@ img {
 .film-card__img {
   object-fit: cover;
   width: 100%;
+}
+
+.film-card__info {
+  padding-top: 10px;
+}
+
+.film-card__name {
+  color: rgb(0, 0, 0);
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
+}
+@media screen and (min-width: 768px) {
+  .film-card__name {
+    font-size: 12px;
+    line-height: 1.33;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .film-card__name {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}
+
+.film-card__data {
+  color: rgb(255, 107, 8);
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+}
+@media screen and (min-width: 768px) {
+  .film-card__data {
+    font-size: 12px;
+    line-height: 1.33;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .film-card__data {
+    font-size: 20px;
+    line-height: 1.2;
+  }
 }/*# sourceMappingURL=index.css.map */

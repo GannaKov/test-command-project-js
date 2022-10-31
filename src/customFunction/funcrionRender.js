@@ -12,14 +12,11 @@ export default function createFilmMarkup(arrFilms) {
           alt=""
         />
         <div class="film-card__info">
-          <p class="film-card__name film-card__item">
+          <h2 class="film-card__name film-card__item">
             ${original_title}
-          </p>
-          <p class="film-card__genre film-card__item">
-            ${genres}
-          </p>
-          <p class="film-card__year film-card__item">
-            ${yearRelease}
+          </h2>
+          <p class="film-card__data film-card__item">
+            ${genres} | ${yearRelease}
           </p>
         </div>
       </a>
