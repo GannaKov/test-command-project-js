@@ -1,21 +1,14 @@
+import getGenreName from '../index.js';
 export default function createFilmMarkup(arrFilms) {
   return arrFilms
-    .map(({ original_title, release_date, genre_ids, backdrop_path }) => {
-      // const genre = genre_ids.map(genre_id => {
-      //   genreIdArray.find(genreIdItem => genreIdItem.id === genre_id);
-      // });
-      // const genrej = genreIdArray.map(genre_idIt => console.log(genre_idIt));
-      // genre_ids.forEach(genre_id => {
-      //   genreIdArray.find(genreIdItem => {
-      //     genreIdItem.id === genre_id;
-      //   });
-      //   genre.push(genreIdItem.name);
-      // });
-      // console.log(genre);
+    .map(({ original_title, release_date, genre_ids, poster_path }) => {
+      console.log('RENDER', genre_ids);
+      let genres = getGenreName(genre_ids);
+      console.log(genres);
       return `<div class="film-card">
       <a class="film-card__link link" href="">
         <img class="film-card__img"
-          src="https://www.themoviedb.org/t/p/w220_and_h330_face${backdrop_path}"
+          src="https://www.themoviedb.org/t/p/w500/${poster_path}"
           alt=""
         />
         <div class="film-card__info">
@@ -23,7 +16,7 @@ export default function createFilmMarkup(arrFilms) {
             ${original_title}
           </p>
           <p class="film-card__genre film-card__item">
-            Genre
+            ${genres}
           </p>
           <p class="film-card__year film-card__item">
             ${release_date}
