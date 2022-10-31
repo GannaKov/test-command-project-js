@@ -11,7 +11,7 @@ import fetchFilmsTrends from './customFunction/fetchFilmsTrends';
 import '../css/index.css';
 
 let genreIdArr = [];
-
+let genreName = [];
 fetchGenreId()
   .then(genreId => {
     genreIdArr = genreId.genres;
@@ -47,9 +47,30 @@ fetchFilmsTrends(page).then(response => {
   // console.log(response.data.results.genre);
   // console.log(response.data.results.original_name);
 });
+// let aaaa;
 function getGenreName(objFilms) {
   console.log('objFilms!', objFilms);
   console.log('genreIdArray!', genreIdArr);
+  objFilms.map(({ genre_ids }) => {
+    console.log(genre_ids);
+    genreName = [];
+    genre_ids.forEach(genre_id => {
+      console.log(genre_id);
+      let aaaa = genreIdArr.find(genre => genre.id === genre_id);
+      // console.log(genre.id, genre.name);
+
+      console.log(aaaa.name);
+      genreName.push(aaaa.name);
+    });
+    console.log(genreName);
+  });
+
+  // objFilms.forEach(film => {
+  //   genreIdArray.find(genreIdItem => {
+  //     genreIdItem.id === film.genre_ids;
+  //   });
+  //   genreName.push(genreIdItem.name);
+  // });
 }
 // function fetchFilmsTrends() {
 //   page = 1;

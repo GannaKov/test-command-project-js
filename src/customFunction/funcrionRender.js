@@ -1,7 +1,6 @@
 export default function createFilmMarkup(arrFilms) {
   return arrFilms
     .map(({ original_title, release_date, genre_ids, backdrop_path }) => {
-      let genre;
       // const genre = genre_ids.map(genre_id => {
       //   genreIdArray.find(genreIdItem => genreIdItem.id === genre_id);
       // });
