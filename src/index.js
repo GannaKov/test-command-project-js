@@ -34,6 +34,7 @@ const refs = {
 let paginationLiElArr;
 let paginationListEl;
 let paginationLiEl;
+let currentPageLiEl;
 // refs.formEl.addEventListener('submit', onFormSubmit);
 
 // function onFormSubmit(evt) {
@@ -78,10 +79,11 @@ export default function getGenreName(genre_ids) {
 //-------------------
 //----- Pagination -----
 function displayPagination(arrFilms) {
-  console.log(page + 3);
+  console.log('i', page);
   refs.paginationEl.innerHTML = '<ul class="pagination__list list"></ul>';
   paginationListEl = document.querySelector('.pagination__list');
   paginationListEl.addEventListener('click', onPaginationLiElClick);
+  //for (let i = 1; i <= 9; i++)
   for (let i = 1; i <= 9; i++) {
     paginationListEl.insertAdjacentHTML(
       'beforeend',
@@ -103,22 +105,33 @@ function displayPagination(arrFilms) {
     }
     paginationListEl.querySelector('.item8').textContent = '...';
   }
+  if (page >= 6 && page <= totalPage - 5) {
+    for (let i = page - 2; i <= page + 2; i++) {
+      const pageClass = `.item${i}`;
+      paginationListEl.querySelector(pageClass).textContent = i;
+    }
+    paginationListEl.querySelector('.item1').textContent = '...';
+    paginationListEl.querySelector('.item8').textContent = '...';
+  }
 }
 
 function displayPaginationActiveBtn(page) {
   const pageCurrentclass = `.item${page}`;
-  const currentPageLiEl = document.querySelector(pageCurrentclass);
+  currentPageLiEl = document.querySelector(pageCurrentclass);
   currentPageLiEl.classList.add('pagination__item--active');
 }
 function onPaginationLiElClick(evt) {
   cleanRender(refs.galleryEl);
+  cleanRender(currentPageLiEl);
   console.dir(evt.target.innerText);
-  const targetPage = evt.target.innerText;
-  fetchFilmsTrends(targetPage).then(response => {
+  // const targetPage = evt.target.innerText;
+  page = evt.target.innerText;
+  //targetPage внизу
+  fetchFilmsTrends(page).then(response => {
     const imgMarkUp = createFilmMarkup(response.results);
     refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
     displayPagination(response.results);
-    displayPaginationActiveBtn(targetPage);
+    displayPaginationActiveBtn(page); //targetPage
   });
 }
 
