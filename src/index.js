@@ -22,7 +22,8 @@ fetchGenreId()
 // -----------------
 
 let page = 1;
-
+let totalPage;
+let currentPage;
 let totalHitsPhotos;
 let inputValue = '';
 const refs = {
@@ -47,8 +48,9 @@ fetchFilmsTrends(page).then(response => {
   const imgMarkUp = createFilmMarkup(response.results);
   refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
   console.log(response);
-  if (response.total_pages > 1) {
-    displayPagination(response.results, response.total_pages);
+  totalPage = response.total_pages;
+  if (totalPage > 1) {
+    displayPagination(response.results);
   }
   // console.log(response.data.results);
   // console.log(response.data.results.original_name);
@@ -65,19 +67,22 @@ export default function getGenreName(genre_ids) {
 }
 //-------------------
 //----- Pagination -----
-function displayPagination(arrFilms, totalPage) {
-  console.log(totalPage);
+function displayPagination(arrFilms) {
+  console.log(page + 3);
   refs.paginationEl.innerHTML = '<ul class="pagination__list"></ul>';
   const paginationListEl = document.querySelector('.pagination__list');
-  for (let i = 1; i <= totalPage; i++) {
+  for (let i = 1; i <= 9; i++) {
     paginationListEl.insertAdjacentHTML(
       'beforeend',
-      '<li class="pagination__item"></li>'
+      `<li class="pagination__item item${i}"></li>`
     );
   }
+  paginationListEl.firstChild.textContent = '1';
+  paginationListEl.lastChild.textContent = totalPage;
+  //
   //document.createElement('ul');
 }
-// function fetchFilmsTrends() {
+// '' function fetchFilmsTrends() {
 //   page = 1;
 //   fetchFilms(page).
 // }
