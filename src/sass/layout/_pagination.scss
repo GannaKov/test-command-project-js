@@ -13,12 +13,18 @@
   width: 100%;
 }
 .pagination__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
+  width: 40px;
+  height: 40px;
+  // padding: 13px;
 }
 .pagination__item:not(:last-child) {
   margin-right: 16px;
@@ -27,6 +33,4 @@
   background-color: rgba(255, 107, 8, 1);
   color: rgba(255, 255, 255, 1);
   border-radius: 5px;
-  width: 40px;
-  height: 40px;
 }

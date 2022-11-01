@@ -399,12 +399,17 @@ img {
 }
 
 .pagination__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
+  width: 40px;
+  height: 40px;
 }
 
 .pagination__item:not(:last-child) {
@@ -415,6 +420,4 @@ img {
   background-color: rgb(255, 107, 8);
   color: rgb(255, 255, 255);
   border-radius: 5px;
-  width: 40px;
-  height: 40px;
 }/*# sourceMappingURL=index.css.map */
