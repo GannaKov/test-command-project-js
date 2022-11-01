@@ -51,6 +51,7 @@ fetchFilmsTrends(page).then(response => {
   totalPage = response.total_pages;
   if (totalPage > 1) {
     displayPagination(response.results);
+    displayPaginationBtn();
   }
   // console.log(response.data.results);
   // console.log(response.data.results.original_name);
@@ -69,7 +70,7 @@ export default function getGenreName(genre_ids) {
 //----- Pagination -----
 function displayPagination(arrFilms) {
   console.log(page + 3);
-  refs.paginationEl.innerHTML = '<ul class="pagination__list"></ul>';
+  refs.paginationEl.innerHTML = '<ul class="pagination__list list"></ul>';
   const paginationListEl = document.querySelector('.pagination__list');
   for (let i = 1; i <= 9; i++) {
     paginationListEl.insertAdjacentHTML(
@@ -77,11 +78,19 @@ function displayPagination(arrFilms) {
       `<li class="pagination__item item${i}"></li>`
     );
   }
+
   paginationListEl.firstChild.textContent = '1';
   paginationListEl.lastChild.textContent = totalPage;
-  //
-  //document.createElement('ul');
+
+  if (page < 6) {
+    for (let i = 2; i <= 7; i++) {
+      const pageA = `.item${i}`;
+      paginationListEl.querySelector(pageA).textContent = i;
+    }
+    paginationListEl.querySelector('.item8').textContent = '...';
+  }
 }
+function displayPaginationBtn() {}
 // '' function fetchFilmsTrends() {
 //   page = 1;
 //   fetchFilms(page).

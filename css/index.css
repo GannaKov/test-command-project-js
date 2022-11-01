@@ -383,4 +383,38 @@ img {
     font-size: 20px;
     line-height: 1.2;
   }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.pagination__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.pagination__item {
+  cursor: pointer;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+}
+
+.pagination__item:not(:last-child) {
+  margin-right: 16px;
+}
+
+.pagination__item--active {
+  background-color: rgb(255, 107, 8);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  width: 40px;
+  height: 40px;
 }/*# sourceMappingURL=index.css.map */
