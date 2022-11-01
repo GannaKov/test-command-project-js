@@ -1,9 +1,13 @@
 .pagination {
   display: flex;
   justify-content: center;
+  //453px
 }
 .pagination__list {
   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  width: 100%;
 }
 .pagination__item {
   cursor: pointer;
@@ -18,6 +22,7 @@
 }
 .pagination__item--active {
   background-color: rgba(255, 107, 8, 1);
+  color: rgba(255, 255, 255, 1);
   border-radius: 5px;
   width: 40px;
   height: 40px;

@@ -22,13 +22,13 @@ fetchGenreId()
 // -----------------
 
 let page = 1;
-let perPage = 40;
-let totalPage;
+
 let totalHitsPhotos;
 let inputValue = '';
 const refs = {
   formEl: document.querySelector('.search-form'),
   galleryEl: document.querySelector('.films-gallery'),
+  paginationEl: document.querySelector('.pagination'),
 };
 // refs.formEl.addEventListener('submit', onFormSubmit);
 
@@ -46,7 +46,11 @@ fetchFilmsTrends(page).then(response => {
   // getGenreName(response.results);
   const imgMarkUp = createFilmMarkup(response.results);
   refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
-  // console.log(response.data.results.genre);
+  console.log(response);
+  if (response.total_pages > 1) {
+    displayPagination(response.results, response.total_pages);
+  }
+  // console.log(response.data.results);
   // console.log(response.data.results.original_name);
 });
 //---------------------
@@ -60,7 +64,19 @@ export default function getGenreName(genre_ids) {
   return genreName;
 }
 //-------------------
-
+//----- Pagination -----
+function displayPagination(arrFilms, totalPage) {
+  console.log(totalPage);
+  refs.paginationEl.innerHTML = '<ul class="pagination__list"></ul>';
+  const paginationListEl = document.querySelector('.pagination__list');
+  for (let i = 1; i <= totalPage; i++) {
+    paginationListEl.insertAdjacentHTML(
+      'beforeend',
+      '<li class="pagination__item"></li>'
+    );
+  }
+  //document.createElement('ul');
+}
 // function fetchFilmsTrends() {
 //   page = 1;
 //   fetchFilms(page).
