@@ -30,7 +30,9 @@ const refs = {
   formEl: document.querySelector('.search-form'),
   galleryEl: document.querySelector('.films-gallery'),
   paginationEl: document.querySelector('.pagination'),
+  paginationListEl: document.querySelector('.pagination__list'),
 };
+refs.paginationListEl.addEventListener('click', onPaginationLiElClick);
 let paginationLiElArr;
 let paginationListEl;
 let paginationLiEl;
@@ -53,6 +55,9 @@ fetchFilmsTrends(page).then(response => {
   refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
   console.log(response);
   totalPage = response.total_pages;
+  if (totalPage <= 1) {
+    refs.paginationListEl.setAttribute('hidden', true);
+  }
   if (totalPage > 1) {
     displayPagination(response.results);
     displayPaginationActiveBtn(page);
@@ -80,30 +85,30 @@ export default function getGenreName(genre_ids) {
 //----- Pagination -----
 function displayPagination(arrFilms) {
   console.log('i', page);
-  refs.paginationEl.innerHTML = '<ul class="pagination__list list"></ul>';
-  paginationListEl = document.querySelector('.pagination__list');
-  paginationListEl.addEventListener('click', onPaginationLiElClick);
+  // refs.paginationEl.innerHTML = '<ul class="pagination__list list"></ul>';
+  // paginationListEl = document.querySelector('.pagination__list');
+  // paginationListEl.addEventListener('click', onPaginationLiElClick);
   //for (let i = 1; i <= 9; i++)
-  for (let i = 1; i <= 9; i++) {
-    paginationListEl.insertAdjacentHTML(
-      'beforeend',
-      `<li class="pagination__item item${i}"></li>`
-    );
-    // console.log(paginationListLiEl);
-    // paginationListLiEl = document.createElement('li');
-    // paginationListLiEl.classList.add('pagination__item item${i}');
-  }
+  // for (let i = 1; i <= 9; i++) {
+  //   paginationListEl.insertAdjacentHTML(
+  //     'beforeend',
+  //     `<li class="pagination__item item${i}"></li>`
+  //   );
+  // console.log(paginationListLiEl);
+  // paginationListLiEl = document.createElement('li');
+  // paginationListLiEl.classList.add('pagination__item item${i}');
+  // }
 
-  paginationListEl.firstChild.textContent = '1';
+  refs.paginationListEl.firstElementChild.textContent = '1';
 
-  paginationListEl.lastChild.textContent = totalPage;
+  refs.paginationListEl.lastElementChild.textContent = totalPage;
 
   if (page < 6) {
     for (let i = 2; i <= 7; i++) {
       const pageClass = `.item${i}`;
-      paginationListEl.querySelector(pageClass).textContent = i;
+      refs.paginationListEl.querySelector(pageClass).textContent = i;
     }
-    paginationListEl.querySelector('.item8').textContent = '...';
+    refs.paginationListEl.querySelector('.item8').textContent = '...';
   }
   if (page >= 6 && page <= totalPage - 5) {
     for (let i = page - 2; i <= page + 2; i++) {
@@ -121,8 +126,9 @@ function displayPaginationActiveBtn(page) {
   currentPageLiEl.classList.add('pagination__item--active');
 }
 function onPaginationLiElClick(evt) {
+  currentPageLiEl.classList.remove('pagination__item--active');
   cleanRender(refs.galleryEl);
-  cleanRender(currentPageLiEl);
+  // cleanRender(currentPageLiEl);
   console.dir(evt.target.innerText);
   // const targetPage = evt.target.innerText;
   page = evt.target.innerText;
