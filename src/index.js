@@ -157,13 +157,12 @@ function onPaginationLiElClick(evt) {
   if (currentItemLi) {
     currentItemLi.classList.remove('pagination__item--active');
   }
-
   cleanRender(refs.galleryEl);
   // cleanRender(currentPageLiEl);
   // if (evt.target.classList.contains('item5')) {
   //   console.log('plus');
   // }
-  // const targetPage = evt.target.innerText;
+
   page = evt.target.innerText;
   if (evt.target.innerText === '...') {
     if (evt.target.classList.contains('item8')) {
