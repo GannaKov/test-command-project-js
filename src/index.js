@@ -153,25 +153,27 @@ function displayPagination(arrFilms) {
 //   currentPageLiEl.classList.add('pagination__item--active');
 // }
 function onPaginationLiElClick(evt) {
-  console.log(evt.target);
   currentItemLi = document.querySelector('.pagination__item--active');
   if (currentItemLi) {
-    console.log('ja onClick');
     currentItemLi.classList.remove('pagination__item--active');
   }
+  console.dir(evt.target.previousSibling.innerText);
   cleanRender(refs.galleryEl);
   // cleanRender(currentPageLiEl);
-
+  // if (evt.target.classList.contains('item5')) {
+  //   console.log('plus');
+  // }
   // const targetPage = evt.target.innerText;
   page = evt.target.innerText;
-  // if ((evt.target.innerText = '...')) {
-  //   switch (evt.target.attributes.action) {
-  //     case 'plus':
-  //       break;
-  //     case 'minus':
-  //       break;
-  //   }
-  // }
+  if (evt.target.innerText === '...') {
+    if (evt.target.classList.contains('item8')) {
+      page = Number(evt.target.previousSibling.innerText) + 1;
+    }
+    if (evt.target.classList.contains('item2')) {
+      page = Number(evt.target.nextSibling.innerText) - 1;
+      console.log(page);
+    }
+  }
   currentPage = page;
 
   //targetPage внизу
