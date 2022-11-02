@@ -157,7 +157,7 @@ function onPaginationLiElClick(evt) {
   if (currentItemLi) {
     currentItemLi.classList.remove('pagination__item--active');
   }
-  console.dir(evt.target.previousSibling.innerText);
+
   cleanRender(refs.galleryEl);
   // cleanRender(currentPageLiEl);
   // if (evt.target.classList.contains('item5')) {
