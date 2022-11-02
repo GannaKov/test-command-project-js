@@ -24,7 +24,7 @@ fetchGenreId()
 let page = 1;
 let totalPage;
 
-let currentPage;
+let currentPage = 1;
 let totalHitsPhotos;
 let inputValue = '';
 const refs = {
@@ -37,16 +37,6 @@ let paginationListEl;
 let paginationLiEl;
 let currentPageLiEl;
 let liArr;
-// refs.formEl.addEventListener('submit', onFormSubmit);
-
-// function onFormSubmit(evt) {
-//   evt.preventDefault();
-//   page = 1;
-//   inputValue = evt.target.elements.searchQuery.value.toLowerCase().trim();
-//   fetchFilms(inputValue, page).then(response => {
-//     cleanRender(refs.galleryEl);
-//   });
-// }
 
 //---- создает 1 страницу трендов
 fetchFilmsTrends(page).then(response => {
@@ -57,7 +47,7 @@ fetchFilmsTrends(page).then(response => {
   totalPage = response.total_pages;
   if (totalPage > 1) {
     displayPagination(response.results);
-    displayPaginationActiveBtn(page);
+    // displayPaginationActiveBtn(page);
     // paginationLiElArr = paginationListEl.querySelectorAll('li');
     // console.log(paginationListLiElArr);
     // for (let i = 0; i < 9; i++) {
@@ -86,16 +76,23 @@ function displayPagination(arrFilms) {
   paginationListEl = document.querySelector('.pagination__list');
   paginationListEl.addEventListener('click', onPaginationLiElClick);
   for (let i = 1; i <= 9; i++) {
-    paginationListEl.insertAdjacentHTML(
-      'beforeend',
-      `<li class="pagination__item item${i}"></li>`
-    );
-    paginationListEl.firstChild.textContent = '1';
-    const firstChild = paginationListEl.firstChild;
-    paginationListEl.lastChild.textContent = totalPage;
+    // paginationListEl.insertAdjacentHTML(
+    //   'beforeend',
+    //   `<li class="pagination__item item${i}"></li>`
+    // );
+    const classEl = `item${i}`;
+    const liEl = document.createElement('li');
+    liEl.classList.add('pagination__item');
+    liEl.classList.add(classEl);
+    liEl.innerText = page;
+    paginationListEl.appendChild(liEl);
+    if (Number(currentPage) === i)
+      liEl.classList.add('pagination__item--active');
   }
-  liArr = paginationListEl.querySelectorAll('li');
-  console.log(liArr);
+  paginationListEl.firstChild.textContent = '1';
+
+  paginationListEl.lastChild.textContent = totalPage;
+
   if (page <= 6) {
     for (let i = 2; i <= 7; i++) {
       const pageClass = `.item${i}`;
@@ -122,32 +119,58 @@ function displayPagination(arrFilms) {
 
     paginationListEl.lastChild.textContent = totalPage;
     for (let i = -2; i <= +2; i++) {
-      const newBtn = Number(page) + i;
-      const pageClass = `.item${i + 5}`;
-      paginationListEl.querySelector(pageClass).textContent = newBtn;
+      console.log('page', page, currentPage);
+      const newBtnNumber = Number(page) + i;
+      const liClass = `.item${i + 5}`;
+      console.log(
+        i,
+        '+',
+        page,
+        'newBtnNumber',
+        newBtnNumber,
+        'liClass',
+        liClass
+      );
+      console.log(typeof page, typeof newBtnNumber);
+      paginationListEl.querySelector(liClass).textContent = newBtnNumber;
+      if (Number(page) === newBtnNumber) {
+        currentItemLi = document.querySelector('.pagination__item--active');
+        if (currentItemLi) {
+          console.log('ja');
+          currentItemLi.classList.remove('pagination__item--active');
+        }
+        console.log(paginationListEl.querySelector(liClass));
+        paginationListEl
+          .querySelector(liClass)
+          .classList.add('pagination__item--active');
+      }
     }
     paginationListEl.querySelector('.item2').textContent = '...';
     paginationListEl.querySelector('.item8').textContent = '...';
   }
 }
 
-function displayPaginationActiveBtn(page) {
-  const pageCurrentclass = `.item${page}`;
-  currentPageLiEl = document.querySelector(pageCurrentclass);
-  currentPageLiEl.classList.add('pagination__item--active');
-}
+// function displayPaginationActiveBtn(page) {
+//   const pageCurrentclass = `.item${page}`;
+//   currentPageLiEl = document.querySelector(pageCurrentclass);
+//   currentPageLiEl.classList.add('pagination__item--active');
+// }
 function onPaginationLiElClick(evt) {
+  let currentItemLi = document.querySelector('.pagination__item--active');
+  currentItemLi.classList.remove('pagination__item--active');
   cleanRender(refs.galleryEl);
-  cleanRender(currentPageLiEl);
-  console.dir(evt.target.innerText);
+  // cleanRender(currentPageLiEl);
+
   // const targetPage = evt.target.innerText;
   page = evt.target.innerText;
-  console.dir(evt.target);
+  currentPage = page;
+
   //targetPage внизу
   fetchFilmsTrends(page).then(response => {
     const imgMarkUp = createFilmMarkup(response.results);
     refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
+
     displayPagination(response.results);
-    displayPaginationActiveBtn(page); //targetPage
+    // displayPaginationActiveBtn(page); //targetPage
   });
 }
