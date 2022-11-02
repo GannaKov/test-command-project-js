@@ -36,6 +36,7 @@ let paginationLiElArr;
 let paginationListEl;
 let paginationLiEl;
 let currentPageLiEl;
+let liArr;
 // refs.formEl.addEventListener('submit', onFormSubmit);
 
 // function onFormSubmit(evt) {
@@ -90,9 +91,11 @@ function displayPagination(arrFilms) {
       `<li class="pagination__item item${i}"></li>`
     );
     paginationListEl.firstChild.textContent = '1';
-
+    const firstChild = paginationListEl.firstChild;
     paginationListEl.lastChild.textContent = totalPage;
   }
+  liArr = paginationListEl.querySelectorAll('li');
+  console.log(liArr);
   if (page <= 6) {
     for (let i = 2; i <= 7; i++) {
       const pageClass = `.item${i}`;
@@ -101,6 +104,23 @@ function displayPagination(arrFilms) {
     paginationListEl.querySelector('.item8').textContent = '...';
   }
   if (page > 6 && page <= totalPage - 5) {
+    // const curr = document.querySelector('pagination__item--active');
+    // curr.classList.remove('pagination__item--active');
+    // for (let i = 2; i <= 6; i++) {
+    //   console.log('tut');
+    //   const liEl = document.createElement('li');
+    //   liEl.classList.add('pagination__item aaa');
+    //   liEl.innerText = i;
+    //   // paginationListEl.insertAdjacentHTML(
+    //   //   'beforeend',
+    //   //   `<li class="pagination__item item${i}"></li>`
+    //   // );
+    //   firstChild.after(liEl);
+    // }
+
+    paginationListEl.firstChild.textContent = '1';
+
+    paginationListEl.lastChild.textContent = totalPage;
     for (let i = -2; i <= +2; i++) {
       const newBtn = Number(page) + i;
       const pageClass = `.item${i + 5}`;
