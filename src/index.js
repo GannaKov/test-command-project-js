@@ -71,7 +71,7 @@ export default function getGenreName(genre_ids) {
 //-------------------
 //----- Pagination -----
 function displayPagination(arrFilms) {
-  console.log('i', page);
+  console.log('i', currentPage);
   refs.paginationEl.innerHTML = '<ul class="pagination__list list"></ul>';
   paginationListEl = document.querySelector('.pagination__list');
   paginationListEl.addEventListener('click', onPaginationLiElClick);
@@ -92,7 +92,7 @@ function displayPagination(arrFilms) {
   paginationListEl.firstChild.textContent = '1';
 
   paginationListEl.lastChild.textContent = totalPage;
-
+  // ----- 1 Ver
   if (page <= 6) {
     for (let i = 2; i <= 7; i++) {
       const pageClass = `.item${i}`;
@@ -100,46 +100,21 @@ function displayPagination(arrFilms) {
     }
     paginationListEl.querySelector('.item8').textContent = '...';
   }
+  // --- 2 Ver
   if (page > 6 && page <= totalPage - 5) {
-    // const curr = document.querySelector('pagination__item--active');
-    // curr.classList.remove('pagination__item--active');
-    // for (let i = 2; i <= 6; i++) {
-    //   console.log('tut');
-    //   const liEl = document.createElement('li');
-    //   liEl.classList.add('pagination__item aaa');
-    //   liEl.innerText = i;
-    //   // paginationListEl.insertAdjacentHTML(
-    //   //   'beforeend',
-    //   //   `<li class="pagination__item item${i}"></li>`
-    //   // );
-    //   firstChild.after(liEl);
-    // }
-
-    paginationListEl.firstChild.textContent = '1';
-
-    paginationListEl.lastChild.textContent = totalPage;
     for (let i = -2; i <= +2; i++) {
       console.log('page', page, currentPage);
-      const newBtnNumber = Number(page) + i;
-      const liClass = `.item${i + 5}`;
-      console.log(
-        i,
-        '+',
-        page,
-        'newBtnNumber',
-        newBtnNumber,
-        'liClass',
-        liClass
-      );
-      console.log(typeof page, typeof newBtnNumber);
+      let newBtnNumber = Number(currentPage) + i;
+      let liClass = `.item${i + 5}`;
+
       paginationListEl.querySelector(liClass).textContent = newBtnNumber;
-      if (Number(page) === newBtnNumber) {
+      if (Number(currentPage) === newBtnNumber) {
         currentItemLi = document.querySelector('.pagination__item--active');
         if (currentItemLi) {
-          console.log('ja');
+          console.log('ja 2');
           currentItemLi.classList.remove('pagination__item--active');
         }
-        console.log(paginationListEl.querySelector(liClass));
+
         paginationListEl
           .querySelector(liClass)
           .classList.add('pagination__item--active');
@@ -147,6 +122,30 @@ function displayPagination(arrFilms) {
     }
     paginationListEl.querySelector('.item2').textContent = '...';
     paginationListEl.querySelector('.item8').textContent = '...';
+  }
+  // ---- 3 Ver
+  if (page >= totalPage - 5) {
+    for (let i = -6; i <= 0; i++) {
+      newBtnNumber = totalPage + i;
+      liClass = `.item${i + 9}`;
+
+      console.log('currentPage', currentPage, 'newBtn', newBtnNumber);
+      paginationListEl.querySelector(liClass).textContent = newBtnNumber;
+    
+        paginationListEl.querySelector(liClass).textContent = newBtnNumber;
+      if (Number(currentPage) === newBtnNumber) {
+        currentItemLi = document.querySelector('.pagination__item--active');
+        if (currentItemLi) {
+          console.log('ja 2');
+          currentItemLi.classList.remove('pagination__item--active');
+        }
+
+        paginationListEl
+          .querySelector(liClass)
+          .classList.add('pagination__item--active');
+      
+    }
+    paginationListEl.querySelector('.item2').textContent = '...';
   }
 }
 
@@ -157,7 +156,10 @@ function displayPagination(arrFilms) {
 // }
 function onPaginationLiElClick(evt) {
   let currentItemLi = document.querySelector('.pagination__item--active');
-  currentItemLi.classList.remove('pagination__item--active');
+  if (currentItemLi) {
+    console.log('ja onClick');
+    currentItemLi.classList.remove('pagination__item--active');
+  }
   cleanRender(refs.galleryEl);
   // cleanRender(currentPageLiEl);
 
