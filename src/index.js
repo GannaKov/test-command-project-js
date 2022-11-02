@@ -106,7 +106,7 @@ function displayPagination(arrFilms) {
 
       paginationListEl.querySelector(liClass).textContent = newBtnNumber;
       if (Number(currentPage) === newBtnNumber) {
-        currentItemLi = document.querySelector('.pagination__item--active');
+        let currentItemLi = document.querySelector('.pagination__item--active');
         if (currentItemLi) {
           console.log('ja 2');
           currentItemLi.classList.remove('pagination__item--active');
@@ -152,7 +152,7 @@ function displayPagination(arrFilms) {
 // }
 function onPaginationLiElClick(evt) {
   console.log(evt.target.attributes.action);
-  let currentItemLi = document.querySelector('.pagination__item--active');
+  currentItemLi = document.querySelector('.pagination__item--active');
   if (currentItemLi) {
     console.log('ja onClick');
     currentItemLi.classList.remove('pagination__item--active');
