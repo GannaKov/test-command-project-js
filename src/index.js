@@ -39,6 +39,7 @@ let currentPageLiEl;
 let liArr;
 let currentItemLi;
 let newBtnNumber;
+let liClass;
 //---- создает 1 страницу трендов
 fetchFilmsTrends(page).then(response => {
   // getGenreName(response.results);
@@ -103,7 +104,7 @@ function displayPagination(arrFilms) {
   if (page > 6 && page <= totalPage - 5) {
     for (let i = -2; i <= +2; i++) {
       newBtnNumber = Number(currentPage) + i;
-      let liClass = `.item${i + 5}`;
+      liClass = `.item${i + 5}`;
 
       paginationListEl.querySelector(liClass).textContent = newBtnNumber;
       if (Number(currentPage) === newBtnNumber) {
@@ -152,7 +153,7 @@ function displayPagination(arrFilms) {
 //   currentPageLiEl.classList.add('pagination__item--active');
 // }
 function onPaginationLiElClick(evt) {
-  // console.log(evt.target.attributes.action);
+  console.log(evt.target);
   currentItemLi = document.querySelector('.pagination__item--active');
   if (currentItemLi) {
     console.log('ja onClick');
