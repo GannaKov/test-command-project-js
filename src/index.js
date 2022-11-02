@@ -76,18 +76,15 @@ function displayPagination(arrFilms) {
   paginationListEl = document.querySelector('.pagination__list');
   paginationListEl.addEventListener('click', onPaginationLiElClick);
   for (let i = 1; i <= 9; i++) {
-    // paginationListEl.insertAdjacentHTML(
-    //   'beforeend',
-    //   `<li class="pagination__item item${i}"></li>`
-    // );
     const classEl = `item${i}`;
     const liEl = document.createElement('li');
     liEl.classList.add('pagination__item');
     liEl.classList.add(classEl);
     liEl.innerText = page;
     paginationListEl.appendChild(liEl);
-    if (Number(currentPage) === i)
+    if (Number(currentPage) === i) {
       liEl.classList.add('pagination__item--active');
+    }
   }
   paginationListEl.firstChild.textContent = '1';
 
@@ -99,11 +96,11 @@ function displayPagination(arrFilms) {
       paginationListEl.querySelector(pageClass).textContent = i;
     }
     paginationListEl.querySelector('.item8').textContent = '...';
+    paginationListEl.querySelector('.item8').setAttribute('action', 'plus');
   }
   // --- 2 Ver
   if (page > 6 && page <= totalPage - 5) {
     for (let i = -2; i <= +2; i++) {
-      console.log('page', page, currentPage);
       let newBtnNumber = Number(currentPage) + i;
       let liClass = `.item${i + 5}`;
 
@@ -129,10 +126,9 @@ function displayPagination(arrFilms) {
       newBtnNumber = totalPage + i;
       liClass = `.item${i + 9}`;
 
-      console.log('currentPage', currentPage, 'newBtn', newBtnNumber);
       paginationListEl.querySelector(liClass).textContent = newBtnNumber;
-    
-        paginationListEl.querySelector(liClass).textContent = newBtnNumber;
+
+      paginationListEl.querySelector(liClass).textContent = newBtnNumber;
       if (Number(currentPage) === newBtnNumber) {
         currentItemLi = document.querySelector('.pagination__item--active');
         if (currentItemLi) {
@@ -143,9 +139,9 @@ function displayPagination(arrFilms) {
         paginationListEl
           .querySelector(liClass)
           .classList.add('pagination__item--active');
-      
+      }
+      paginationListEl.querySelector('.item2').textContent = '...';
     }
-    paginationListEl.querySelector('.item2').textContent = '...';
   }
 }
 
@@ -155,6 +151,7 @@ function displayPagination(arrFilms) {
 //   currentPageLiEl.classList.add('pagination__item--active');
 // }
 function onPaginationLiElClick(evt) {
+  console.log(evt.target.attributes.action);
   let currentItemLi = document.querySelector('.pagination__item--active');
   if (currentItemLi) {
     console.log('ja onClick');
@@ -165,6 +162,14 @@ function onPaginationLiElClick(evt) {
 
   // const targetPage = evt.target.innerText;
   page = evt.target.innerText;
+  // if ((evt.target.innerText = '...')) {
+  //   switch (evt.target.attributes.action) {
+  //     case 'plus':
+  //       break;
+  //     case 'minus':
+  //       break;
+  //   }
+  // }
   currentPage = page;
 
   //targetPage внизу
