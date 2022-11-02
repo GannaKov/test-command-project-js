@@ -38,7 +38,7 @@ let paginationLiEl;
 let currentPageLiEl;
 let liArr;
 let currentItemLi;
-
+let newBtnNumber;
 //---- создает 1 страницу трендов
 fetchFilmsTrends(page).then(response => {
   // getGenreName(response.results);
@@ -102,7 +102,7 @@ function displayPagination(arrFilms) {
   // --- 2 Ver
   if (page > 6 && page <= totalPage - 5) {
     for (let i = -2; i <= +2; i++) {
-      let newBtnNumber = Number(currentPage) + i;
+      newBtnNumber = Number(currentPage) + i;
       let liClass = `.item${i + 5}`;
 
       paginationListEl.querySelector(liClass).textContent = newBtnNumber;
