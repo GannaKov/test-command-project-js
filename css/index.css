@@ -405,8 +405,9 @@ img {
   justify-content: center;
   align-items: center;
   outline: none;
-  background-color: transparent;
+  background-color: rgb(247, 247, 247);
   border: none;
+  border-radius: 5px;
 }
 @media screen and (min-width: 768px) {
   .btn--decrement {
@@ -432,8 +433,9 @@ img {
   justify-content: center;
   align-items: center;
   outline: none;
-  background-color: transparent;
+  border-radius: 5px;
   border: none;
+  background-color: rgb(247, 247, 247);
 }
 @media screen and (min-width: 768px) {
   .btn--increment {
