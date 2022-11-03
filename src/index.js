@@ -104,7 +104,10 @@ function displayPagination(arrFilms) {
       paginationListEl.querySelector(pageClass).textContent = i;
     }
     paginationListEl.querySelector('.item8').textContent = '...';
-    paginationListEl.querySelector('.item8').setAttribute('action', 'plus');
+    paginationListEl.querySelector('.item6').classList.add('item--hidden-mob');
+    paginationListEl.querySelector('.item7').classList.add('item--hidden-mob');
+    paginationListEl.querySelector('.item8').classList.add('item--hidden-mob');
+    paginationListEl.querySelector('.item9').classList.add('item--hidden-mob');
   }
   // --- 2 Ver
   if (page > 6 && page <= totalPage - 5) {
@@ -127,6 +130,10 @@ function displayPagination(arrFilms) {
     }
     paginationListEl.querySelector('.item2').textContent = '...';
     paginationListEl.querySelector('.item8').textContent = '...';
+    paginationListEl.querySelector('.item8').classList.add('item--hidden-mob');
+    paginationListEl.querySelector('.item9').classList.add('item--hidden-mob');
+    paginationListEl.querySelector('.item1').classList.add('item--hidden-mob');
+    paginationListEl.querySelector('.item2').classList.add('item--hidden-mob');
   }
   // ---- 3 Ver
   if (page >= totalPage - 5) {
@@ -149,6 +156,18 @@ function displayPagination(arrFilms) {
           .classList.add('pagination__item--active');
       }
       paginationListEl.querySelector('.item2').textContent = '...';
+      paginationListEl
+        .querySelector('.item1')
+        .classList.add('item--hidden-mob');
+      paginationListEl
+        .querySelector('.item2')
+        .classList.add('item--hidden-mob');
+      paginationListEl
+        .querySelector('.item3')
+        .classList.add('item--hidden-mob');
+      paginationListEl
+        .querySelector('.item4')
+        .classList.add('item--hidden-mob');
     }
   }
 }

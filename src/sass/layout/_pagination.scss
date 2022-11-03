@@ -80,3 +80,8 @@
   color: rgba(255, 255, 255, 1);
   border-radius: 5px;
 }
+.item--hidden-mob {
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
