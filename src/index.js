@@ -1,6 +1,6 @@
-import { Notify } from 'notiflix';
-import { Report } from 'notiflix';
-import 'notiflix/dist/notiflix-3.2.5.min.css';
+// import { Notify } from 'notiflix';
+// import { Report } from 'notiflix';
+// import 'notiflix/dist/notiflix-3.2.5.min.css';
 
 import createFilmMarkup from './customFunction/funcrionRender';
 import cleanRender from './customFunction/functionCleanRender';
@@ -11,7 +11,6 @@ import fetchFilmsTrends from './customFunction/fetchFilmsTrends';
 import '../css/index.css';
 
 let genreIdArr = [];
-// let genreName = [];
 
 fetchGenreId()
   .then(genreId => {
@@ -31,7 +30,11 @@ const refs = {
   formEl: document.querySelector('.search-form'),
   galleryEl: document.querySelector('.films-gallery'),
   paginationEl: document.querySelector('.pagination'),
+  paginationWrapEl: document.querySelector('.pagination__wrap'),
+  decrementBtnEl: document.querySelector(`button[data-action="decrement"]`),
+  incrementBtnEl: document.querySelector(`button[data-action="increment"]`),
 };
+
 let paginationLiElArr;
 let paginationListEl;
 let paginationLiEl;
@@ -73,8 +76,11 @@ export default function getGenreName(genre_ids) {
 //-------------------
 //----- Pagination -----
 function displayPagination(arrFilms) {
+  refs.incrementBtnEl.addEventListener('click', onIncrementBtnElClick);
+  refs.decrementBtnEl.addEventListener('click', onDecrementBtnElClick);
+
   console.log('i', currentPage);
-  refs.paginationEl.innerHTML = '<ul class="pagination__list list"></ul>';
+  refs.paginationWrapEl.innerHTML = '<ul class="pagination__list list"></ul>';
   paginationListEl = document.querySelector('.pagination__list');
   paginationListEl.addEventListener('click', onPaginationLiElClick);
   for (let i = 1; i <= 9; i++) {
@@ -176,6 +182,36 @@ function onPaginationLiElClick(evt) {
   currentPage = page;
 
   //targetPage внизу
+  fetchFilmsTrends(page).then(response => {
+    const imgMarkUp = createFilmMarkup(response.results);
+    refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
+
+    displayPagination(response.results);
+    // displayPaginationActiveBtn(page); //targetPage
+  });
+}
+function onIncrementBtnElClick() {
+  cleanRender(refs.galleryEl);
+
+  page = Number(page) + 1;
+
+  currentPage = page;
+  fetchFilmsTrends(page).then(response => {
+    const imgMarkUp = createFilmMarkup(response.results);
+    refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
+
+    displayPagination(response.results);
+    // displayPaginationActiveBtn(page); //targetPage
+  });
+}
+function onDecrementBtnElClick() {
+  cleanRender(refs.galleryEl);
+  console.log(typeof currentPage, typeof page);
+  console.log(currentPage, page);
+  page = Number(page) - 1;
+  console.log('u', typeof currentPage, typeof page);
+  console.log('u', currentPage, page);
+  currentPage = page;
   fetchFilmsTrends(page).then(response => {
     const imgMarkUp = createFilmMarkup(response.results);
     refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);

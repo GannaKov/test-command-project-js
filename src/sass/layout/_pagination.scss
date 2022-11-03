@@ -6,6 +6,35 @@
 
   //453px
 }
+.btn--decrement {
+  margin-right: 16px;
+  cursor: pointer;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  background-color: transparent;
+}
+.pagination__icon {
+  color: black;
+}
+.pagination__wrap {
+  display: flex;
+  justify-content: center;
+}
+.btn--increment {
+  margin-left: 16px;
+  cursor: pointer;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  background-color: transparent;
+}
 .pagination__list {
   display: flex;
   justify-content: center;
