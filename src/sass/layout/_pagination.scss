@@ -1,13 +1,14 @@
 .pagination {
   display: flex;
   justify-content: center;
-
-  margin-bottom: 60px;
-
+  padding-bottom: 40px;
+  @include tablet {
+    padding-bottom: 60px;
+  }
   //453px
 }
 .btn--decrement {
-  margin-right: 16px;
+  margin-right: 19px;
   cursor: pointer;
   display: flex;
   width: 40px;
@@ -16,6 +17,10 @@
   align-items: center;
   outline: none;
   background-color: transparent;
+  border: none;
+  @include tablet {
+    margin-right: 16px;
+  }
 }
 .pagination__icon {
   color: black;
@@ -25,7 +30,7 @@
   justify-content: center;
 }
 .btn--increment {
-  margin-left: 16px;
+  margin-left: 19px;
   cursor: pointer;
   display: flex;
   width: 40px;
@@ -34,12 +39,17 @@
   align-items: center;
   outline: none;
   background-color: transparent;
+  border: none;
+  @include tablet {
+    margin-left: 16px;
+  }
 }
 .pagination__list {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  gap: 16px;
 }
 .pagination__item {
   display: flex;
@@ -53,11 +63,16 @@
   line-height: 1.33;
   width: 40px;
   height: 40px;
-  // padding: 13px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.14;
+  color: rgba(0, 0, 0, 1);
 }
-.pagination__item:not(:last-child) {
-  margin-right: 16px;
-}
+// .pagination__item:not(:last-child) {
+//   margin-right: 16px;
+// }
 .pagination__item--active {
   background-color: rgba(255, 107, 8, 1);
   color: rgba(255, 255, 255, 1);

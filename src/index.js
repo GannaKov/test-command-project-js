@@ -192,31 +192,22 @@ function onPaginationLiElClick(evt) {
 }
 function onIncrementBtnElClick() {
   cleanRender(refs.galleryEl);
-
   page = Number(page) + 1;
-
   currentPage = page;
   fetchFilmsTrends(page).then(response => {
     const imgMarkUp = createFilmMarkup(response.results);
     refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
-
     displayPagination(response.results);
-    // displayPaginationActiveBtn(page); //targetPage
   });
 }
 function onDecrementBtnElClick() {
   cleanRender(refs.galleryEl);
-  console.log(typeof currentPage, typeof page);
-  console.log(currentPage, page);
   page = Number(page) - 1;
-  console.log('u', typeof currentPage, typeof page);
-  console.log('u', currentPage, page);
   currentPage = page;
   fetchFilmsTrends(page).then(response => {
     const imgMarkUp = createFilmMarkup(response.results);
     refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
 
     displayPagination(response.results);
-    // displayPaginationActiveBtn(page); //targetPage
   });
 }
