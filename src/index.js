@@ -14,6 +14,7 @@ let genreIdArr = [];
 
 fetchGenreId()
   .then(genreId => {
+    console.log('FFF', genreId);
     genreIdArr = genreId.genres;
   })
   .catch(error => console.log(error));
@@ -21,11 +22,11 @@ fetchGenreId()
 // -----------------
 
 let page = 1;
-let totalPage;
+let totalPage; //**** */
 
 let currentPage = 1;
-let totalHitsPhotos;
-let inputValue = '';
+// let totalHitsPhotos;
+// let inputValue = '';
 const refs = {
   formEl: document.querySelector('.search-form'),
   galleryEl: document.querySelector('.films-gallery'),
@@ -33,35 +34,26 @@ const refs = {
   paginationWrapEl: document.querySelector('.pagination__wrap'),
   decrementBtnEl: document.querySelector(`button[data-action="decrement"]`),
   incrementBtnEl: document.querySelector(`button[data-action="increment"]`),
-};
+}; //******
 
-let paginationLiElArr;
-let paginationListEl;
-let paginationLiEl;
-let currentPageLiEl;
-let liArr;
-let currentItemLi;
-let newBtnNumber;
-let liClass;
+// let paginationLiElArr;
+let paginationListEl; //**** */
+// let paginationLiEl;
+// let currentPageLiEl;
+// let liArr;
+let currentItemLi; //**** */
+let newBtnNumber; //**** */
+let liClass; //***** */
 //---- создает 1 страницу трендов
 fetchFilmsTrends(page).then(response => {
-  // getGenreName(response.results);
   const imgMarkUp = createFilmMarkup(response.results);
   refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
   console.log(response);
+  console.log(response.results);
   totalPage = response.total_pages;
   if (totalPage > 1) {
     displayPagination(response.results);
-    // displayPaginationActiveBtn(page);
-    // paginationLiElArr = paginationListEl.querySelectorAll('li');
-    // console.log(paginationListLiElArr);
-    // for (let i = 0; i < 9; i++) {
-    //   paginationLiElArr[i].addEventListener('click', onPaginationLiElClick);
-    // }
-    //currentPageLiEl.addEventListener('click', onPageLiElClick());
   }
-  // console.log(response.data.results);
-  // console.log(response.data.results.original_name);
 });
 //---------------------
 
@@ -104,13 +96,16 @@ function displayPagination(arrFilms) {
       paginationListEl.querySelector(pageClass).textContent = i;
     }
     paginationListEl.querySelector('.item8').textContent = '...';
-    paginationListEl.querySelector('.item6').classList.add('item--hidden-mob');
-    paginationListEl.querySelector('.item7').classList.add('item--hidden-mob');
-    paginationListEl.querySelector('.item8').classList.add('item--hidden-mob');
-    paginationListEl.querySelector('.item9').classList.add('item--hidden-mob');
+    paginationBtnHidden();
+    //paginationListEl.classList.add('item--hidden-mob--1'); //!!!!!!!
+
+    // paginationListEl.querySelector('.item6').classList.add('item--hidden-mob');
+    // paginationListEl.querySelector('.item7').classList.add('item--hidden-mob');
+    // paginationListEl.querySelector('.item8').classList.add('item--hidden-mob');
+    // paginationListEl.querySelector('.item9').classList.add('item--hidden-mob');
   }
   // --- 2 Ver
-  if (page > 6 && page <= totalPage - 5) {
+  if (page > 6 && page < totalPage - 5) {
     for (let i = -2; i <= +2; i++) {
       newBtnNumber = Number(currentPage) + i;
       liClass = `.item${i + 5}`;
@@ -130,10 +125,12 @@ function displayPagination(arrFilms) {
     }
     paginationListEl.querySelector('.item2').textContent = '...';
     paginationListEl.querySelector('.item8').textContent = '...';
-    paginationListEl.querySelector('.item8').classList.add('item--hidden-mob');
-    paginationListEl.querySelector('.item9').classList.add('item--hidden-mob');
-    paginationListEl.querySelector('.item1').classList.add('item--hidden-mob');
-    paginationListEl.querySelector('.item2').classList.add('item--hidden-mob');
+    paginationBtnHidden();
+    //paginationListEl.classList.add('item--hidden-mob--2'); //!!!!!!!
+    // paginationListEl.querySelector('.item8').classList.add('item--hidden-mob');
+    // paginationListEl.querySelector('.item9').classList.add('item--hidden-mob');
+    // paginationListEl.querySelector('.item1').classList.add('item--hidden-mob');
+    // paginationListEl.querySelector('.item2').classList.add('item--hidden-mob');
   }
   // ---- 3 Ver
   if (page >= totalPage - 5) {
@@ -156,37 +153,30 @@ function displayPagination(arrFilms) {
           .classList.add('pagination__item--active');
       }
       paginationListEl.querySelector('.item2').textContent = '...';
-      paginationListEl
-        .querySelector('.item1')
-        .classList.add('item--hidden-mob');
-      paginationListEl
-        .querySelector('.item2')
-        .classList.add('item--hidden-mob');
-      paginationListEl
-        .querySelector('.item3')
-        .classList.add('item--hidden-mob');
-      paginationListEl
-        .querySelector('.item4')
-        .classList.add('item--hidden-mob');
+      paginationBtnHidden();
+      // paginationListEl.classList.add('item--hidden-mob--3'); //!!!!!!
+      // paginationListEl
+      //   .querySelector('.item1')
+      //   .classList.add('item--hidden-mob');
+      // paginationListEl
+      //   .querySelector('.item2')
+      //   .classList.add('item--hidden-mob');
+      // paginationListEl
+      //   .querySelector('.item3')
+      //   .classList.add('item--hidden-mob');
+      // paginationListEl
+      //   .querySelector('.item4')
+      //   .classList.add('item--hidden-mob');
     }
   }
 }
 
-// function displayPaginationActiveBtn(page) {
-//   const pageCurrentclass = `.item${page}`;
-//   currentPageLiEl = document.querySelector(pageCurrentclass);
-//   currentPageLiEl.classList.add('pagination__item--active');
-// }
 function onPaginationLiElClick(evt) {
   currentItemLi = document.querySelector('.pagination__item--active');
   if (currentItemLi) {
     currentItemLi.classList.remove('pagination__item--active');
   }
   cleanRender(refs.galleryEl);
-  // cleanRender(currentPageLiEl);
-  // if (evt.target.classList.contains('item5')) {
-  //   console.log('plus');
-  // }
 
   page = evt.target.innerText;
   if (evt.target.innerText === '...') {
@@ -200,7 +190,6 @@ function onPaginationLiElClick(evt) {
   }
   currentPage = page;
 
-  //targetPage внизу
   fetchFilmsTrends(page).then(response => {
     const imgMarkUp = createFilmMarkup(response.results);
     refs.galleryEl.insertAdjacentHTML('beforeend', imgMarkUp);
@@ -209,6 +198,19 @@ function onPaginationLiElClick(evt) {
     // displayPaginationActiveBtn(page); //targetPage
   });
 }
+//------------------------------------
+function paginationBtnHidden() {
+  if (page < 6) {
+    paginationListEl.classList.add('item--hidden-mob--1');
+  }
+  if (page >= 6 && page <= totalPage - 5) {
+    paginationListEl.classList.add('item--hidden-mob--2');
+  }
+  if (page > totalPage - 5) {
+    paginationListEl.classList.add('item--hidden-mob--3');
+  }
+}
+//------------------------
 function onIncrementBtnElClick() {
   cleanRender(refs.galleryEl);
   page = Number(page) + 1;

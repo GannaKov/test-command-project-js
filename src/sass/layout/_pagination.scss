@@ -1,9 +1,11 @@
 .pagination {
   display: flex;
   justify-content: center;
+  padding-top: 40px;
   padding-bottom: 40px;
   @include tablet {
     padding-bottom: 60px;
+    padding-top: 60px;
   }
   //453px
 }
@@ -80,7 +82,18 @@
   color: rgba(255, 255, 255, 1);
   border-radius: 5px;
 }
-.item--hidden-mob {
+.item--hidden-mob--1 .item6,
+.item--hidden-mob--1 .item7,
+.item--hidden-mob--1 .item8,
+.item--hidden-mob--1 .item9,
+.item--hidden-mob--2 .item1,
+.item--hidden-mob--2 .item2,
+.item--hidden-mob--2 .item8,
+.item--hidden-mob--2 .item9,
+.item--hidden-mob--3 .item1,
+.item--hidden-mob--3 .item2,
+.item--hidden-mob--3 .item3,
+.item--hidden-mob--3 .item4 {
   @media screen and (max-width: 767px) {
     display: none;
   }
