@@ -1,13 +1,9 @@
 .films-gallery-container {
   padding-top: 20px;
   //   padding-bottom: 20px;
-  margin-bottom: 40px;
+
   @include tablet {
     padding-top: 32px;
-    margin-bottom: 61px;
-  }
-  @include desktop {
-    margin-bottom: 60px;
   }
 }
 .films-gallery {
