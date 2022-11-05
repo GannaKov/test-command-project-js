@@ -398,8 +398,8 @@ img {
   }
 }
 
-.btn--decrement {
-  margin-right: 19px;
+.btn--decrement,
+.btn--increment {
   cursor: pointer;
   display: flex;
   width: 40px;
@@ -410,6 +410,10 @@ img {
   background-color: rgb(247, 247, 247);
   border: none;
   border-radius: 5px;
+}
+
+.btn--decrement {
+  margin-right: 6px;
 }
 @media screen and (min-width: 768px) {
   .btn--decrement {
@@ -427,17 +431,7 @@ img {
 }
 
 .btn--increment {
-  margin-left: 19px;
-  cursor: pointer;
-  display: flex;
-  width: 40px;
-  height: 40px;
-  justify-content: center;
-  align-items: center;
-  outline: none;
-  border-radius: 5px;
-  border: none;
-  background-color: rgb(247, 247, 247);
+  margin-left: 6px;
 }
 @media screen and (min-width: 768px) {
   .btn--increment {
@@ -450,7 +444,6 @@ img {
   justify-content: center;
   align-items: center;
   width: 100%;
-  gap: 16px;
 }
 
 .pagination__item {
