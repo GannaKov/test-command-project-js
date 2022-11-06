@@ -1,10 +1,10 @@
 import fetchGenreId from './customFunction/fetchGenreId';
 import { fetchFilmsTrends } from './customFunction/fetchFilmsTrends'; //Q
-import { displayPagination } from './customFunction/pagination';
+import { paginationRender } from './customFunction/pagination';
 import { filmsTrendRender } from './customFunction/filmsTrendRender';
-
+import { fetchFilms } from './customFunction/fetchFilmsTrends';
 import '../css/index.css';
-let page = 1; //ost
+//ost
 export const urlPart = 'movie/week';
 export let genreIdArr = []; //не трогать
 
@@ -16,11 +16,6 @@ fetchGenreId()
 
 // -----------------
 
-//let totalPage; //**** */
-
-// let currentPage = 1;
-
-//const galleryEl = document.querySelector('.films-gallery');
 export const refs = {
   formEl: document.querySelector('.search-form'),
   galleryEl: document.querySelector('.films-gallery'),
@@ -38,21 +33,45 @@ let paginationListEl; //**** */
 let currentItemLi; //**** */
 let newBtnNumber; //**** */
 let liClass; //***** */
+let page = 1;
 
-//---- создает 1 страницу трендов
-fetchFilmsTrends(page, urlPart).then(data => {
-  const destinationEl = refs.galleryEl;
-  filmsTrendRender(data, destinationEl);
-  let totalPage = data.total_pages;
-  let currentPage = 1;
-  if (totalPage > 1) {
-    console.log('in index 2');
-    displayPagination(data.total_pages, page, currentPage);
-  }
+function fetchMovies(page) {
+  fetchFilms(page).then(data => {
+    const destinationEl = refs.galleryEl;
+    filmsTrendRender(data, destinationEl);
+    let totalPage = data.total_pages;
+
+    if (totalPage > 1) {
+      const renderedPagination = paginationRender(
+        Number(data.total_pages),
+        Number(data.page)
+      );
+      refs.paginationEl.innerHTML = renderedPagination;
+    }
+  });
+}
+
+refs.paginationEl.addEventListener('click', e => {
+  e.preventDefault();
+  console.log(e.target, e.target.dataset.page);
+  fetchMovies(e.target.dataset.page);
+  console.log('ku');
 });
 
-//----- Pagination -----
+// function onIncrDecrBtnElClick(evt) {
+//   cleanRender(refs.galleryEl);
+//   if (evt.currentTarget.dataset.action === 'increment') {
+//     page = Number(page) + 1;
+//   }
+//   if (evt.currentTarget.dataset.action === 'decrement') {
+//     page = Number(page) - 1;
+//   }
+//   currentPage = page;
+//   fetchFilmsTrends(page, urlPart).then(data => {
+//     const destinationEl = refs.galleryEl;
+//     filmsTrendRender(data, destinationEl);
 
-//------------------------------------
-
-//------------------------
+//     displayPagination(data.total_pages, page, currentPage);
+//   });
+// }
+fetchMovies(page);
