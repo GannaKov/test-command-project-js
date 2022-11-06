@@ -4,6 +4,7 @@ import { paginationRender } from './customFunction/pagination';
 import { filmsTrendRender } from './customFunction/filmsTrendRender';
 import { fetchFilms } from './customFunction/fetchFilmsTrends';
 import '../css/index.css';
+import { cleanRender } from './customFunction/functionCleanRender';
 //ost
 export const urlPart = 'movie/week';
 export let genreIdArr = []; //не трогать
@@ -36,15 +37,18 @@ let liClass; //***** */
 let page = 1;
 
 function fetchMovies(page) {
-  fetchFilms(page).then(data => {
+  fetchFilms(page, 'movie', 'week').then(data => {
     const destinationEl = refs.galleryEl;
+
     filmsTrendRender(data, destinationEl);
     let totalPage = data.total_pages;
 
     if (totalPage > 1) {
       const renderedPagination = paginationRender(
         Number(data.total_pages),
-        Number(data.page)
+        Number(data.page),
+        'movie',
+        'week'
       );
       refs.paginationEl.innerHTML = renderedPagination;
     }
@@ -53,9 +57,8 @@ function fetchMovies(page) {
 
 refs.paginationEl.addEventListener('click', e => {
   e.preventDefault();
-  console.log(e.target, e.target.dataset.page);
+  cleanRender(refs.galleryEl);
   fetchMovies(e.target.dataset.page);
-  console.log('ku');
 });
 
 // function onIncrDecrBtnElClick(evt) {

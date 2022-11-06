@@ -7,7 +7,12 @@ import { filmsTrendRender } from './filmsTrendRender';
 import { buildUrl } from './fetchFilmsTrends';
 //import { page } from '../../src/index';
 
-export function paginationRender(totalPages, currentPage) {
+export function paginationRender(
+  totalPages,
+  currentPage,
+  mediaType,
+  time_window
+) {
   //console.log(arrFilms);
   //   refs.incrementBtnEl.addEventListener('click', onIncrDecrBtnElClick);
   //   refs.decrementBtnEl.addEventListener('click', onIncrDecrBtnElClick);
@@ -120,7 +125,9 @@ export function paginationRender(totalPages, currentPage) {
       `<li class="pagination__item item${itemClass}"><a data-page="${
         paginationArrAtr[itemClass - 1]
       }" href="${buildUrl(
-        paginationArrAtr[itemClass - 1]
+        paginationArrAtr[itemClass - 1],
+        mediaType,
+        time_window
       )}" class="link pagination__link ${activeClass} ">${pageNumber}</a></li>`;
   });
   return `<button class="btn--decrement" data-page="${
