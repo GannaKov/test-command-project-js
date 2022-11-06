@@ -1,3 +1,3 @@
-export default function cleanRender(element) {
+export function cleanRender(element) {
   element.innerHTML = '';
 }

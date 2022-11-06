@@ -1,14 +1,14 @@
-// import genreIdArr from '../index.js';
-// export default function getGenreName(genre_ids) {
-//   console.log('genreIdArray!', genreIdArr);
-//   console.log('GN genre_ids', genre_ids);
-//   genreName = [];
-//   genre_ids.forEach(genre_id => {
-//     console.log('GN genre_id', genre_id);
-//     // let aaaa = genreIdArr.find(genre => genre.id === genre_id);
+// import { genreIdArr } from '../controls/trendsControl';
+import { genreIdArr } from '../../src/index';
+export function getGenreName(genre_ids) {
+  let genreName = [];
+  genre_ids.forEach(genre_id => {
+    genreName.push(genreIdArr.find(genre => genre.id === genre_id).name);
+  });
 
-//     // genreName.push(aaaa.name);
-//     genreName.push(genreIdArr.find(genre => genre.id === genre_id).name);
-//   });
-//   return genreName;
-// }
+  // if (genreName.length > 2) {
+  //   genreName = genreName.slice(0, 2);
+  //   genreName.push('Other');
+  // }
+  return genreName;
+}
