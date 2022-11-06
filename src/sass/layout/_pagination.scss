@@ -58,19 +58,14 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
+
   width: 40px;
   height: 40px;
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.14;
-  color: rgba(0, 0, 0, 1);
+  // font-family: 'Roboto';
+  // font-style: normal;
+  // font-weight: 500;
+  // font-size: 12px;
+  // line-height: 1.14;
 }
 .pagination__link {
   width: 100%;
@@ -78,6 +73,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: rgba(0, 0, 0, 1);
 }
 // .pagination__item:not(:last-child) {
 //   margin-right: 16px;

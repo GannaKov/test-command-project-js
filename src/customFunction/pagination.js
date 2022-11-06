@@ -50,6 +50,7 @@ export function paginationRender(
     paginationArrAtr.push(8);
     paginationArrBtn.push(totalPages);
     paginationArrAtr.push(totalPages);
+    paginationBtnHidden(currentPage, totalPages);
     // paginationListEl.querySelector('.item8').textContent = '...';
     // paginationBtnHidden(page, paginationListEl, totalPage);
   }
@@ -78,8 +79,10 @@ export function paginationRender(
     }
     paginationArrBtn.push('...');
     paginationArrAtr.push(currentPage + 3);
+
     paginationArrBtn.push(totalPages);
     paginationArrAtr.push(totalPages);
+    paginationBtnHidden(currentPage, totalPages);
   }
   // paginationListEl.querySelector('.item2').textContent = '...';
   // paginationListEl.querySelector('.item8').textContent = '...';
@@ -96,6 +99,7 @@ export function paginationRender(
       //   liClass = `.item${i + 9}`;
       paginationArrBtn.push(totalPages + i);
       paginationArrAtr.push(totalPages + i);
+      paginationBtnHidden(currentPage, totalPages);
       //   paginationListEl.querySelector(liClass).textContent = newBtnNumber;
 
       //   paginationListEl.querySelector(liClass).textContent = newBtnNumber;
@@ -115,8 +119,10 @@ export function paginationRender(
     }
   }
 
+  let itemClass = 0;
   paginationArrBtn.forEach(pageNumber => {
-    let itemClass = paginationArrBtn.indexOf(pageNumber) + 1;
+    itemClass += 1;
+
     let activeClass =
       pageNumber === currentPage ? 'pagination__item--active' : '';
 
@@ -140,7 +146,7 @@ export function paginationRender(
     </svg>
   </button>
         <div class="pagination__wrap">
-        <ul class="pagination__list">
+        <ul class="pagination__list list">
         ${paginationLinks} </ul>
         </div>
         

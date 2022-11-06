@@ -445,19 +445,8 @@ img {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
   width: 40px;
   height: 40px;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.14;
-  color: rgb(0, 0, 0);
 }
 
 .pagination__link {
@@ -466,6 +455,12 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: rgb(0, 0, 0);
 }
 
 .pagination__item--active {
