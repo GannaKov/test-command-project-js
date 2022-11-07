@@ -378,17 +378,22 @@ img {
   }
 }
 
-.pagination {
+.pagination__cont {
   display: flex;
   justify-content: center;
   padding-top: 40px;
   padding-bottom: 40px;
 }
 @media screen and (min-width: 768px) {
-  .pagination {
+  .pagination__cont {
     padding-bottom: 60px;
     padding-top: 60px;
   }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
 }
 
 .btn--decrement,
