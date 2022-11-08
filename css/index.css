@@ -405,7 +405,6 @@ img {
   justify-content: center;
   align-items: center;
   outline: none;
-  outline: 1px solid green;
   background-color: rgb(247, 247, 247);
   border: none;
   border-radius: 5px;
@@ -463,7 +462,7 @@ img {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.33;
   color: rgb(0, 0, 0);
 }
